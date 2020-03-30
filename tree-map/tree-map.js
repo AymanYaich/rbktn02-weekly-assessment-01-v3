@@ -23,7 +23,7 @@
   *  newTree.value // 2
   *  newTree.children[0].value // 4
   *  newTree.children[1].value // 6
-  *  newTree.children[0].children[1].value // 10
+  *  newTree.children[0].children[1].value // 10prototy
   *  newTree.children[1].children[1].value // 14
   *  root1.value // still 1
   */
@@ -31,7 +31,53 @@
 var Tree = function(value) {
   this.value = value;
   this.children = [];
+
+};
+
+Tree.prototype.addChild = function (value){ 
+   // method to add new children to the tree
+  this.children.push (Tree(value))
+}
+
+Tree.prototype.remove = function (child){
+
+  var index = this.children.indexOf(child);
+  if (index >=0) {
+    
+    this.children.splice(index, 1);
+
+  this.value = fun (this.value)
+
+  }
+}
+
+Tree.prototype.contains = function (target){  // Check if a target valu exist or not in a tree
+   
+if ( this.value===target){
+  return true
+} else {
+  if (this.children.length){
+    for ( var i = 0 ; i<this.children.length; i++){
+      if ( this.children[i].contains(target)){
+        return true
+      }
+    }
+  }
+
+} return false
+
 };
 
 
+Tree.prototype.map = function (fun) {
+  
+ var newTree = new Tree(func(this.value));
 
+ if (this.children){
+    for (var i=0 ;  i<this.children.length ; i++){
+    
+       newTree.children.push(this.children[i].map(func));
+    }
+  }
+  return newTree;
+};
